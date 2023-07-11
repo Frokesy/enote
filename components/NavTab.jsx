@@ -3,10 +3,15 @@ import { View, Text, StyleSheet } from 'react-native'
 import { Feather } from '@expo/vector-icons';
 
 const NavTab = () => {
+    const addNewTask = () => {
+        console.log('add new task')
+    }
   return (
     <View style={styles.container}>
-        <Text style={styles.text}>0 records</Text>
-        <Feather name="edit" size={20} color="white" />
+        <Text style={styles.text}>0 undone tasks</Text>
+        <Feather
+        onPress={addNewTask}
+        name="edit" size={20} color="#ff9f80" />
     </View>
   )
 }
@@ -15,7 +20,8 @@ export default NavTab
 
 const styles = StyleSheet.create({
     text: {
-        color: '#fff',
+        color: '#ff9f80',
+        fontSize: 16,
     },
     container: {
         flex: 1,

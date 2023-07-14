@@ -1,0 +1,1 @@
+# A task management app built with react native mainly for personal use. It's still WIP

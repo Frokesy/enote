@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal } from "react-native";
 import { StyleSheet, Text, View } from "react-native";
-import AddTaskField from "../../components/AddTaskField";
+import AddTaskField from "../components/AddTaskField";
 
 const AddTaskModal = ({ setOpenModal }) => {
 

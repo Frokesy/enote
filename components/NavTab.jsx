@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import AddTaskModal from "../src/screens/AddTaskModal";
+import AddTaskModal from "../screens/AddTaskModal";
 
 const NavTab = () => {
   const [openModal, setOpenModal] = useState(false);

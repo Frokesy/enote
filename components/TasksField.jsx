@@ -1,14 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import TaskContext from "../context/TaskContext";
 
 const TasksField = () => {
-  const contextValue = useContext(TaskContext)
+  const { tasks, setTasks } = useContext(TaskContext)
+  
+  useEffect(() => {
+    console.log(tasks)
+  }, [tasks])
   return (
     <View>
       <Text style={styles.date}>Today</Text>
       <View style={styles.taskContainer}>
-        <Text style={styles.text}>{contextValue}</Text>
+        <Text style={styles.text}>Learn React Native</Text>
       </View>
     </View>
   );

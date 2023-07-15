@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -8,9 +8,14 @@ import {
 import InputField from "./layout/InputField";
 import { DateTime } from "./DateTimePicker";
 import Button from "./layout/Button";
+import TaskContext from "../context/TaskContext";
 
 const AddTaskField = ({ newTask, setOpenModal }) => {
+
+  const { tasks, setTasks } = useContext(TaskContext);
+
   const [task, setTask] = useState({
+    id: Math.floor(Math.random() * 10000),
     title: "",
     note: "",
     schedule: "",
@@ -26,7 +31,7 @@ const AddTaskField = ({ newTask, setOpenModal }) => {
   };
 
   const addTask = () => {
-    console.log(task);
+    setTasks([...tasks, task]);
     setTask({
       title: "",
       note: "",

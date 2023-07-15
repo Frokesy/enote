@@ -7,11 +7,6 @@ import { useState } from "react";
 import { TaskContextProvider } from "./context/TaskContext";
 
 export default function App() {
-  const [tasks, setTasks] = useState([]);
-
-  const getTasks = (task) => {
-    setTasks([...tasks, task]);
-  };
   return (
     <TaskContextProvider>
       <View style={styles.container}>
@@ -19,7 +14,7 @@ export default function App() {
           <Header />
           <TasksField />
         </View>
-        <NavTab tasks={tasks} />
+        <NavTab />
         <StatusBar style="light" />
       </View>
     </TaskContextProvider>

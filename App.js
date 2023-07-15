@@ -1,18 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import NavTab from './components/NavTab';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import NavTab from "./components/NavTab";
+import Header from "./components/Header";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Todo</Text>
       <View>
+        <Header />
         <Text style={styles.date}>Today</Text>
-
         <View style={styles.goalContainer}>
           <Text style={styles.text}>Learn React Native</Text>
         </View>
-
       </View>
       <NavTab />
       <StatusBar style="light" />
@@ -25,29 +24,24 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 80,
     paddingHorizontal: 20,
-    backgroundColor: '#333333',
-  },
-  headerText: {
-    color: '#ff9f80',
-    fontSize: 36,
-    fontWeight: 'bold',
+    backgroundColor: "#333333",
   },
   date: {
-    color: '#ccc',
+    color: "#ccc",
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginTop: 20,
   },
   text: {
-    color: '#ccc',
+    color: "#ccc",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   goalContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 10,
     padding: 16,
-    backgroundColor: '#262626',
+    backgroundColor: "#262626",
     borderRadius: 8,
-  }
+  },
 });

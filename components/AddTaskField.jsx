@@ -45,8 +45,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   buttonField: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-end",
-  }
+    paddingVertical: 20,
+  },
 });

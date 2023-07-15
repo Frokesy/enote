@@ -1,9 +1,10 @@
 import React from "react";
 import { Modal } from "react-native";
 import { StyleSheet, Text, View } from "react-native";
-import AddTaskField from "../components/AddTaskField";
+import AddTaskField from "../../components/AddTaskField";
 
 const AddTaskModal = ({ setOpenModal }) => {
+
   return (
     <Modal animationType="slide">
       <View style={styles.container}>
@@ -16,7 +17,7 @@ const AddTaskModal = ({ setOpenModal }) => {
             Close
           </Text>
         </View>
-        <AddTaskField />
+        <AddTaskField setOpenModal={setOpenModal} />
       </View>
     </Modal>
   );

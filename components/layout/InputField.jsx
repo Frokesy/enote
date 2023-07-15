@@ -9,9 +9,12 @@ const InputField = ({ label, value, placeholder, setValue, multiline }) => {
         <TextInput
           style={styles.multiline}
           multiline={true}
+          value={value}
           numberOfLines={4}
           placeholder={placeholder}
           placeholderTextColor="#999999"
+          onChangeText={setValue}
+          keyboardAppearance="dark"
         />
       ) : (
         <TextInput
@@ -20,6 +23,7 @@ const InputField = ({ label, value, placeholder, setValue, multiline }) => {
           placeholder={placeholder}
           placeholderTextColor="#999999"
           onChangeText={setValue}
+          keyboardAppearance="dark"
         />
       )}
     </View>

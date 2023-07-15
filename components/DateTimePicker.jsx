@@ -2,7 +2,7 @@ import { useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-export const DateTimePick = () => {
+export const DateTime = ({ getSchedule }) => {
   const [date, setDate] = useState(new Date(1598051730000));
   const [show, setShow] = useState(false);
 
@@ -10,8 +10,8 @@ export const DateTimePick = () => {
     const currentDate = selectedDate;
     setShow(false);
     setDate(currentDate);
+    getSchedule(date.toLocaleString());
   };
-  //{date.toLocaleString()}
   return (
     <View style={styles.dateTimeOuterContainer}>
       <Text style={styles.label}>Scheduled for: </Text>

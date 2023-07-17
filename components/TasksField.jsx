@@ -1,18 +1,27 @@
 import React, { useContext } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  FlatList,
-  ScrollView,
-  SafeAreaView,
-} from "react-native";
+import { Text, View, StyleSheet, FlatList, Alert } from "react-native";
 import TaskContext from "../context/TaskContext";
 import { Ionicons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 
 const TasksField = () => {
   const { tasks, setTasks } = useContext(TaskContext);
+
+  const deleteTask = (id) => {
+    Alert.alert("Delete Task", "Are you sure you want to delete this task?", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Delete",
+        style: "destructive",
+        onPress: () => {
+          setTasks(tasks.filter((task) => task.id !== id));
+        },
+      },
+    ]);
+  };
 
   const renderItem = ({ item }) => (
     <View style={styles.taskContainer}>
@@ -25,19 +34,24 @@ const TasksField = () => {
       <View style={styles.innerContainerTwo}>
         <View style={styles.iconContainer}>
           <Ionicons name="checkmark" size={20} color="green" />
-          <Entypo name="cross" size={20} color="red" />
+          <Entypo
+            name="cross"
+            size={20}
+            color="red"
+            onPress={() => deleteTask(item.id)}
+          />
         </View>
       </View>
     </View>
   );
   return (
     <View style={styles.screen}>
-        <Text style={styles.date}>Today</Text>
-        <FlatList
-          data={tasks}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={renderItem}
-        />
+      <Text style={styles.date}>Today</Text>
+      <FlatList
+        data={tasks}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={renderItem}
+      />
     </View>
   );
 };

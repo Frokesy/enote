@@ -31,25 +31,29 @@ const TasksField = () => {
     </View>
   );
   return (
-    <ScrollView style={styles.screen}>
-      <Text style={styles.date}>Today</Text>
-      <FlatList
-        data={tasks}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={renderItem}
-      />
-    </ScrollView>
+    <View style={styles.screen}>
+        <Text style={styles.date}>Today</Text>
+        <FlatList
+          data={tasks}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={renderItem}
+        />
+    </View>
   );
 };
 
 export default TasksField;
 
 const styles = StyleSheet.create({
+  screen: {
+    paddingBottom: 280,
+  },
   date: {
     color: "#ccc",
     fontSize: 24,
     fontWeight: "bold",
     marginTop: 20,
+    marginBottom: 10,
   },
   title: {
     color: "#fff",

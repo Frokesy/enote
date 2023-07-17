@@ -122,7 +122,6 @@ export default TasksField;
 const styles = StyleSheet.create({
   screen: {
     marginTop: 30,
-    paddingBottom: 280,
   },
   title: {
     color: "#fff",

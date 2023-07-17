@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import AddTaskModal from "../screens/AddTaskModal";
+import TaskContext from "../context/TaskContext";
 
 const NavTab = () => {
   const [openModal, setOpenModal] = useState(false);
+  const { tasks, completedTasks } = useContext(TaskContext);
+  const [totalCount, setTotalCount] = useState(tasks.length + completedTasks.length);
   const addNewTask = () => {
     setOpenModal(true);
   };
+  useEffect(() => {
+    setTotalCount(tasks.length + completedTasks.length);
+  }, [tasks, completedTasks]);
   return (
     <>
       <View style={styles.container}>
-        <Text style={styles.text}>0 undone tasks</Text>
+        <Text style={styles.text}>{totalCount} total tasks for today</Text>
         <Pressable
           style={({ pressed }) => pressed && styles.pressed}
           onPress={addNewTask}

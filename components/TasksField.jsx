@@ -1,37 +1,44 @@
-import React, { useContext, useEffect } from "react";
-import { Text, View, StyleSheet, FlatList } from "react-native";
+import React, { useContext } from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  ScrollView,
+  SafeAreaView,
+} from "react-native";
 import TaskContext from "../context/TaskContext";
 import { Ionicons } from "@expo/vector-icons";
-import { Entypo } from '@expo/vector-icons';
+import { Entypo } from "@expo/vector-icons";
 
 const TasksField = () => {
   const { tasks, setTasks } = useContext(TaskContext);
-  return (
-    <>
-      <View>
-        <Text style={styles.date}>Today</Text>
-        <FlatList
-          data={tasks}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <View style={styles.taskContainer}>
-              <View style={styles.innerContainerOne}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.note}>{item.note}</Text>
-                <Text style={styles.category}>Category: {item.category}</Text>
-                <Text style={styles.schedule}>Scheduled for:{" "}{item.schedule}</Text>
-              </View>
-              <View style={styles.innerContainerTwo}>
-                <View style={styles.iconContainer}>
-                  <Ionicons name="checkmark" size={20} color="green" />
-                  <Entypo name="cross" size={20} color="red" />
-                </View>
-              </View>
-            </View>
-          )}
-        />
+
+  const renderItem = ({ item }) => (
+    <View style={styles.taskContainer}>
+      <View style={styles.innerContainerOne}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.note}>{item.note}</Text>
+        <Text style={styles.category}>Category: {item.category}</Text>
+        <Text style={styles.schedule}>Scheduled for: {item.schedule}</Text>
       </View>
-    </>
+      <View style={styles.innerContainerTwo}>
+        <View style={styles.iconContainer}>
+          <Ionicons name="checkmark" size={20} color="green" />
+          <Entypo name="cross" size={20} color="red" />
+        </View>
+      </View>
+    </View>
+  );
+  return (
+    <ScrollView style={styles.screen}>
+      <Text style={styles.date}>Today</Text>
+      <FlatList
+        data={tasks}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={renderItem}
+      />
+    </ScrollView>
   );
 };
 
@@ -58,7 +65,6 @@ const styles = StyleSheet.create({
   schedule: {
     color: "#808080",
     fontSize: 12,
-
   },
   category: {
     color: "#808080",
@@ -79,7 +85,7 @@ const styles = StyleSheet.create({
     width: 60,
   },
   innerContainerOne: {
-    width: '80%',
+    width: "80%",
   },
   innerContainerTwo: {
     justifyContent: "center",

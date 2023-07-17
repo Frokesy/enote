@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, FlatList, Alert } from "react-native";
 import TaskContext from "../context/TaskContext";
 import { Ionicons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
+import Accordion from "./Accordion";
 
 const TasksField = () => {
   const { tasks, setTasks } = useContext(TaskContext);
@@ -46,11 +47,17 @@ const TasksField = () => {
   );
   return (
     <View style={styles.screen}>
-      <Text style={styles.date}>Today</Text>
-      <FlatList
-        data={tasks}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={renderItem}
+      <Accordion title="Completed Tasks" content={<Text>Content 1</Text>} count={0} />
+      <Accordion
+        title="Uncompleted Tasks"
+        content={
+          <FlatList
+            data={tasks}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={renderItem}
+          />
+        }
+        count={tasks.length}
       />
     </View>
   );
@@ -60,14 +67,8 @@ export default TasksField;
 
 const styles = StyleSheet.create({
   screen: {
+    marginTop: 30,
     paddingBottom: 280,
-  },
-  date: {
-    color: "#ccc",
-    fontSize: 24,
-    fontWeight: "bold",
-    marginTop: 20,
-    marginBottom: 10,
   },
   title: {
     color: "#fff",

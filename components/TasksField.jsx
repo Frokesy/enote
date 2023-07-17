@@ -6,7 +6,8 @@ import { Entypo } from "@expo/vector-icons";
 import Accordion from "./Accordion";
 
 const TasksField = () => {
-  const { tasks, setTasks } = useContext(TaskContext);
+  const { tasks, setTasks, completedTasks, setCompletedTasks } =
+    useContext(TaskContext);
 
   const deleteTask = (id) => {
     Alert.alert("Delete Task", "Are you sure you want to delete this task?", [
@@ -24,6 +25,30 @@ const TasksField = () => {
     ]);
   };
 
+  const handleCheckTask = (id) => {
+    Alert.alert(
+      "Complete Task",
+      "Are you sure you want to check this task as completed?",
+      [
+        {
+          text: "Cancel",
+          style: "destructive",
+        },
+        {
+          text: "Check",
+          style: "default",
+          onPress: () => {
+            setCompletedTasks([
+              ...completedTasks,
+              tasks.find((task) => task.id === id),
+            ]);
+            setTasks(tasks.filter((task) => task.id !== id));
+          },
+        },
+      ]
+    );
+  };
+
   const renderItem = ({ item }) => (
     <View style={styles.taskContainer}>
       <View style={styles.innerContainerOne}>
@@ -34,7 +59,12 @@ const TasksField = () => {
       </View>
       <View style={styles.innerContainerTwo}>
         <View style={styles.iconContainer}>
-          <Ionicons name="checkmark" size={20} color="green" />
+          <Ionicons
+            name="checkmark"
+            size={20}
+            color="green"
+            onPress={() => handleCheckTask(item.id)}
+          />
           <Entypo
             name="cross"
             size={20}
@@ -45,9 +75,33 @@ const TasksField = () => {
       </View>
     </View>
   );
+
+  const renderCompletedItem = ({ item }) => (
+    <View style={styles.taskContainer}>
+      <View style={styles.innerContainerOne}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.note}>{item.note}</Text>
+        <Text style={styles.category}>Category: {item.category}</Text>
+      </View>
+      <View style={styles.innerContainerTwo}>
+        <Text style={styles.schedule}>Completed</Text>    
+      </View>
+    </View>
+  );
+
   return (
     <View style={styles.screen}>
-      <Accordion title="Completed Tasks" content={<Text>Content 1</Text>} count={0} />
+      <Accordion
+        title="Completed Tasks"
+        content={
+          <FlatList
+            data={completedTasks}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={renderCompletedItem}
+          />
+        }
+        count={completedTasks.length}
+      />
       <Accordion
         title="Uncompleted Tasks"
         content={

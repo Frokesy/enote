@@ -6,10 +6,6 @@ import { Entypo } from '@expo/vector-icons';
 
 const TasksField = () => {
   const { tasks, setTasks } = useContext(TaskContext);
-
-  useEffect(() => {
-    console.log(tasks);
-  }, [tasks]);
   return (
     <>
       <View>
@@ -19,9 +15,10 @@ const TasksField = () => {
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <View style={styles.taskContainer}>
-              <View>
+              <View style={styles.innerContainerOne}>
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.note}>{item.note}</Text>
+                <Text style={styles.category}>Category: {item.category}</Text>
                 <Text style={styles.schedule}>Scheduled for:{" "}{item.schedule}</Text>
               </View>
               <View style={styles.innerContainerTwo}>
@@ -29,7 +26,6 @@ const TasksField = () => {
                   <Ionicons name="checkmark" size={20} color="green" />
                   <Entypo name="cross" size={20} color="red" />
                 </View>
-                <Text style={styles.category}>Category: {item.category}</Text>
               </View>
             </View>
           )}
@@ -56,17 +52,18 @@ const styles = StyleSheet.create({
   },
   note: {
     color: "#bfbfbf",
-    fontSize: 16,
+    fontSize: 14,
     paddingBottom: 4,
   },
   schedule: {
-    color: "#ccc",
+    color: "#808080",
     fontSize: 12,
 
   },
   category: {
     color: "#808080",
     fontSize: 14,
+    paddingVertical: 6,
   },
   taskContainer: {
     flexDirection: "row",
@@ -80,7 +77,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: 60,
-    marginBottom: 6,
+  },
+  innerContainerOne: {
+    width: '80%',
   },
   innerContainerTwo: {
     justifyContent: "center",

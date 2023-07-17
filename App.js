@@ -3,7 +3,6 @@ import { StyleSheet, View } from "react-native";
 import NavTab from "./components/NavTab";
 import Header from "./components/Header";
 import TasksField from "./components/TasksField";
-import { useState } from "react";
 import { TaskContextProvider } from "./context/TaskContext";
 
 export default function App() {
@@ -25,7 +24,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 80,
-    paddingHorizontal: 20,
+    paddingHorizontal: 14,
     backgroundColor: "#333333",
   },
 });

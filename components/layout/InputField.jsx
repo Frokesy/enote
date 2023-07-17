@@ -11,6 +11,7 @@ const InputField = ({ label, value, placeholder, setValue, multiline }) => {
           multiline={true}
           value={value}
           numberOfLines={4}
+          maxLength={100}
           placeholder={placeholder}
           placeholderTextColor="#999999"
           onChangeText={setValue}

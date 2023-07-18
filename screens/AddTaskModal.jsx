@@ -10,8 +10,8 @@ const AddTaskModal = ({ setOpenModal }) => {
       <View style={styles.container}>
         <View style={styles.header}>
           <View>
-            <Text style={styles.headerText}>Hey Frokes,</Text>
-            <Text style={styles.text}>Add a task to your schedule today</Text>
+            <Text style={styles.headerText}>Howdy Frokes,</Text>
+            <Text style={styles.text}>Got a new task in mind? Let's add it to your schedule.</Text>
           </View>
           <Text onPress={() => setOpenModal(false)} style={styles.text}>
             Close

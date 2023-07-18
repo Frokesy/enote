@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Text, View, StyleSheet, FlatList, Alert } from "react-native";
+import { Text, View, StyleSheet, FlatList, Alert, ScrollView } from "react-native";
 import TaskContext from "../context/TaskContext";
 import { Ionicons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";

@@ -6,14 +6,14 @@ import TaskContext from "../context/TaskContext";
 
 const NavTab = () => {
   const [openModal, setOpenModal] = useState(false);
-  const { tasks, completedTasks } = useContext(TaskContext);
-  const [totalCount, setTotalCount] = useState(tasks.length + completedTasks.length);
+  const { tasks } = useContext(TaskContext);
+  const [totalCount, setTotalCount] = useState(tasks.length);
   const addNewTask = () => {
     setOpenModal(true);
   };
   useEffect(() => {
-    setTotalCount(tasks.length + completedTasks.length);
-  }, [tasks, completedTasks]);
+    setTotalCount(tasks.length);
+  }, [tasks]);
   return (
     <>
       <View style={styles.container}>
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     right: 0,
     height: 80,
     paddingHorizontal: 20,
-    backgroundColor: "#1a1a1a",
+    backgroundColor: "#262626",
     alignItems: "center",
     justifyContent: "space-between",
   },

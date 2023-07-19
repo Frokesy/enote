@@ -11,7 +11,6 @@ import Button from "./layout/Button";
 import TaskContext from "../context/TaskContext";
 
 const AddTaskField = ({ newTask, setOpenModal }) => {
-
   const { tasks, setTasks } = useContext(TaskContext);
 
   const [task, setTask] = useState({
@@ -20,6 +19,7 @@ const AddTaskField = ({ newTask, setOpenModal }) => {
     note: "",
     schedule: "",
     category: "",
+    completed: false,
   });
 
   const dismissKeyboard = () => {
@@ -31,6 +31,11 @@ const AddTaskField = ({ newTask, setOpenModal }) => {
   };
 
   const addTask = () => {
+    //validate inputs
+    if (!task.title || !task.schedule || !task.category) {
+      alert("Please fill in all fields");
+      return;
+    }
     setTasks([...tasks, task]);
     setTask({
       title: "",

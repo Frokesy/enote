@@ -32,7 +32,7 @@ const Accordion = ({ title, content, count }) => {
 
   const contentHeight = animation.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, screenHeight / 4],
+    outputRange: [0, screenHeight],
   });
   const emptyContentHeight = animation.interpolate({
     inputRange: [0, 1],
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
     padding: 16,
-    backgroundColor: "#1a1a1a",
+    backgroundColor: "#262626",
     borderRadius: 8,
   },
   text: {

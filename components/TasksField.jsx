@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
-import { Text, View, StyleSheet, FlatList, Alert, ScrollView } from "react-native";
+import React, { useContext, useEffect } from "react";
+import { Text, View, StyleSheet, FlatList, Alert } from "react-native";
 import TaskContext from "../context/TaskContext";
 import { Ionicons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import Accordion from "./Accordion";
 
 const TasksField = () => {
-  const { tasks, setTasks, completedTasks, setCompletedTasks } =
-    useContext(TaskContext);
+  const { tasks, setTasks } = useContext(TaskContext);
 
   const deleteTask = (id) => {
     Alert.alert("Delete Task", "Are you sure you want to delete this task?", [
@@ -28,7 +27,7 @@ const TasksField = () => {
   const handleCheckTask = (id) => {
     Alert.alert(
       "Complete Task",
-      "Are you sure you want to check this task as completed?",
+      "Mark as completed?",
       [
         {
           text: "Cancel",
@@ -38,72 +37,56 @@ const TasksField = () => {
           text: "Check",
           style: "default",
           onPress: () => {
-            setCompletedTasks([
-              ...completedTasks,
-              tasks.find((task) => task.id === id),
-            ]);
-            setTasks(tasks.filter((task) => task.id !== id));
+            setTasks(
+              tasks.map((task) =>
+                task.id === id ? { ...task, completed: true } : task
+              )
+            );
           },
         },
       ]
     );
   };
 
+  const date = new Date();
+
   const renderItem = ({ item }) => (
-    <View style={styles.taskContainer}>
+    <View style={[styles.taskContainer, item.completed && styles.completed]}>
       <View style={styles.innerContainerOne}>
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.note}>{item.note}</Text>
-        <Text style={styles.category}>Category: {item.category}</Text>
-        <Text style={styles.schedule}>Scheduled for: {item.schedule}</Text>
+        <Text style={[styles.note, item.completed && styles.completedText]}>{item.note}</Text>
+        <Text style={[styles.schedule, item.completed && styles.completedText]}>{item.schedule}</Text>
+        <Text style={[styles.category, item.completed && styles.completedText]}>Category: {item.category}</Text>
       </View>
       <View style={styles.innerContainerTwo}>
-        <View style={styles.iconContainer}>
+        {item.completed ? (
+          <Ionicons name="checkmark-done" size={24} color="#fff" />
+        ) : (
+          <View style={styles.iconContainer}>
           <Ionicons
-            name="checkmark"
-            size={20}
-            color="green"
+            name="checkmark-done-circle-outline"
+            size={24}
+            color="#ff9f80"
             onPress={() => handleCheckTask(item.id)}
           />
           <Entypo
-            name="cross"
-            size={20}
-            color="red"
+            name="trash"
+            size={24}
+            color="#ff9f80"
             onPress={() => deleteTask(item.id)}
           />
         </View>
+        )}
       </View>
     </View>
   );
+  
 
-  const renderCompletedItem = ({ item }) => (
-    <View style={styles.taskContainer}>
-      <View style={styles.innerContainerOne}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.note}>{item.note}</Text>
-        <Text style={styles.category}>Category: {item.category}</Text>
-      </View>
-      <View style={styles.innerContainerTwo}>
-        <Text style={styles.schedule}>Completed</Text>    
-      </View>
-    </View>
-  );
 
   return (
     <View style={styles.screen}>
       <Accordion
-        title="Completed Tasks"
-        content={
-          <FlatList
-            data={completedTasks}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={renderCompletedItem}
-          />
-        }
-        count={completedTasks.length}
-      />
-      <Accordion
-        title="Uncompleted Tasks"
+        title={date.toDateString()}
         content={
           <FlatList
             data={tasks}
@@ -134,6 +117,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     paddingBottom: 4,
   },
+  completedText: {
+    color: "#fff",
+  },
   schedule: {
     color: "#808080",
     fontSize: 12,
@@ -151,10 +137,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#262626",
     borderRadius: 8,
   },
+  completed: {
+    backgroundColor: "#009900",
+  },
   iconContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: 60,
+    width: 70,
   },
   innerContainerOne: {
     width: "80%",

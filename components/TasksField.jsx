@@ -50,42 +50,42 @@ const TasksField = () => {
 
   const date = new Date();
 
-  const renderItem = ({ item }) => (
-    <View style={[styles.taskContainer, item.completed && styles.completed]}>
-      <View style={styles.innerContainerOne}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={[styles.note, item.completed && styles.completedText]}>{item.note}</Text>
-        <Text style={[styles.schedule, item.completed && styles.completedText]}>{item.schedule}</Text>
-        <Text style={[styles.category, item.completed && styles.completedText]}>Category: {item.category}</Text>
-      </View>
-      <View style={styles.innerContainerTwo}>
-        {item.completed ? (
-          <Ionicons name="checkmark-done" size={24} color="#fff" />
-        ) : (
-          <View style={styles.iconContainer}>
-          <Ionicons
-            name="checkmark-done-circle-outline"
-            size={24}
-            color="#ff9f80"
-            onPress={() => handleCheckTask(item.id)}
-          />
-          <Entypo
-            name="trash"
-            size={24}
-            color="#ff9f80"
-            onPress={() => deleteTask(item.id)}
-          />
-        </View>
-        )}
-      </View>
-    </View>
-  );
+  // const renderItem = ({ item }) => (
+  //   <View style={[styles.taskContainer, item.completed && styles.completed]}>
+  //     <View style={styles.innerContainerOne}>
+  //       <Text style={styles.title}>{item.title}</Text>
+  //       <Text style={[styles.note, item.completed && styles.completedText]}>{item.note}</Text>
+  //       <Text style={[styles.schedule, item.completed && styles.completedText]}>{item.schedule}</Text>
+  //       <Text style={[styles.category, item.completed && styles.completedText]}>Category: {item.category}</Text>
+  //     </View>
+  //     <View style={styles.innerContainerTwo}>
+  //       {item.completed ? (
+  //         <Ionicons name="checkmark-done" size={24} color="#fff" />
+  //       ) : (
+  //         <View style={styles.iconContainer}>
+  //         <Ionicons
+  //           name="checkmark-done-circle-outline"
+  //           size={24}
+  //           color="#ff9f80"
+  //           onPress={() => handleCheckTask(item.id)}
+  //         />
+  //         <Entypo
+  //           name="trash"
+  //           size={24}
+  //           color="#ff9f80"
+  //           onPress={() => deleteTask(item.id)}
+  //         />
+  //       </View>
+  //       )}
+  //     </View>
+  //   </View>
+  // );
   
 
 
   return (
     <View style={styles.screen}>
-      <Accordion
+      {/* <Accordion
         title={date.toDateString()}
         content={
           <FlatList
@@ -95,7 +95,8 @@ const TasksField = () => {
           />
         }
         count={tasks.length}
-      />
+      /> */}
+      
     </View>
   );
 };
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginTop: 10,
     padding: 16,
-    backgroundColor: "#262626",
+    backgroundColor: "#404040",
     borderRadius: 8,
   },
   completed: {

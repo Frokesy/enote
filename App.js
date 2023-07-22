@@ -1,21 +1,19 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
-import NavTab from "./components/NavTab";
-import Header from "./components/Header";
-import TasksField from "./components/TasksField";
 import { TaskContextProvider } from "./context/TaskContext";
+import MainScreen from "./screens/MainScreen";
+import AddButton from "./components/AddButton";
 
 export default function App() {
   return (
     <TaskContextProvider>
       <View style={styles.container}>
         <View>
-          <Header />
-          <TasksField />
+          <MainScreen />
         </View>
-        <NavTab />
         <StatusBar style="light" />
       </View>
+      <AddButton />
     </TaskContextProvider>
   );
 }
@@ -26,5 +24,6 @@ const styles = StyleSheet.create({
     paddingTop: 80,
     paddingHorizontal: 14,
     backgroundColor: "#333333",
+    position: "relative",
   },
 });

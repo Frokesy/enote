@@ -5,6 +5,7 @@ import { Feather } from "@expo/vector-icons";
 const Header = () => {
   return (
     <View style={styles.container}>
+      <Feather name="bell" size={28} style={styles.icon} color="#ff9f80" />
       <Feather name="search" size={28} style={styles.icon} color="#ff9f80" />
       <FontAwesome name="user-circle" size={28} color="#ff9f80" />
     </View>

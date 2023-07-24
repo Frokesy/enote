@@ -64,12 +64,7 @@ const ListsContainer = () => {
             <Text style={styles.headerText}>My Lists</Text>
           </TouchableOpacity>
           <View style={styles.iconsContainer}>
-            <Octicons
-              onPress={() => console.log("keyboard-arrow-down")}
-              name="plus"
-              size={26}
-              color="#fff"
-            />
+            <Octicons name="plus" size={26} color="#fff" />
             <TouchableOpacity onPress={toggleAccordion}>
               {expanded ? (
                 <MaterialIcons
@@ -98,11 +93,6 @@ const ListsContainer = () => {
           />
         </View>
       </Animated.View>
-      {/* <Animated.View style={{ height: contentHeight, overflow: "hidden" }}>
-        <View style={styles.emptyListContainer}>
-          <Text style={styles.emptyListText}>You have not created a list yet</Text>
-        </View>
-      </Animated.View> */}
     </View>
   );
 };
@@ -113,7 +103,6 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 60,
     position: "relative",
-    
   },
   headerContainer: {
     paddingHorizontal: 10,
@@ -151,7 +140,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 20,
     borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+    borderBottomColor: "#808080",
   },
   title: {
     color: "#fff",

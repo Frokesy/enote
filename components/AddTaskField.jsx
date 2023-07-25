@@ -4,6 +4,9 @@ import {
   View,
   TouchableWithoutFeedback,
   Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  Text,
 } from "react-native";
 import InputField from "./layout/InputField";
 import { DateTime } from "./DateTimePicker";
@@ -31,11 +34,6 @@ const AddTaskField = ({ newTask, setOpenModal }) => {
   };
 
   const addTask = () => {
-    //validate inputs
-    if (!task.title || !task.schedule || !task.category) {
-      alert("Please fill in all fields");
-      return;
-    }
     setTasks([...tasks, task]);
     setTask({
       title: "",
@@ -48,30 +46,27 @@ const AddTaskField = ({ newTask, setOpenModal }) => {
 
   return (
     <TouchableWithoutFeedback onPress={dismissKeyboard}>
-      <View style={styles.container}>
+      <View>
         <InputField
-          label="Title"
           value={task.title}
           setValue={(text) => setTask({ ...task, title: text })}
-          placeholder="e.g Daily reflection"
+          placeholder="Add a task..."
         />
         <InputField
-          label="Add a note? (Optional)"
           placeholder="Add a note..."
           multiline
           value={task.note}
           setValue={(text) => setTask({ ...task, note: text })}
         />
-        <DateTime getSchedule={getSchedule} />
-        <InputField
+        <View style={styles.innerContainer}>
+          <DateTime getSchedule={getSchedule} />
+        </View>
+        {/* <InputField
           label="Category"
           value={task.category}
           setValue={(text) => setTask({ ...task, category: text })}
           placeholder="e.g Must do"
-        />
-        <View style={styles.buttonField}>
-          <Button value="Add Task" onPress={addTask} />
-        </View>
+        /> */}
       </View>
     </TouchableWithoutFeedback>
   );
@@ -82,7 +77,6 @@ export default AddTaskField;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 30,
   },
   text: {
     color: "#ccc",

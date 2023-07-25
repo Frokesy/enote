@@ -14,7 +14,6 @@ export const DateTime = ({ getSchedule }) => {
   };
   return (
     <View style={styles.dateTimeOuterContainer}>
-      <Text style={styles.label}>Scheduled for: </Text>
       <View style={styles.dateTimeInnerContainer}>
         <DateTimePicker
           testID="dateTimePicker"
@@ -53,7 +52,6 @@ const styles = StyleSheet.create({
   dateTimeInnerContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: "#333333",
     paddingVertical: 20,
     paddingHorizontal: 10,
     marginTop: 10,

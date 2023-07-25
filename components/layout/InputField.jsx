@@ -1,10 +1,9 @@
 import React from "react";
 import { Text, TextInput, View, StyleSheet } from "react-native";
 
-const InputField = ({ label, value, placeholder, setValue, multiline }) => {
+const InputField = ({ value, placeholder, setValue, multiline }) => {
   return (
     <View>
-      <Text style={styles.label}>{label}</Text>
       {multiline ? (
         <TextInput
           style={styles.multiline}
@@ -34,19 +33,13 @@ const InputField = ({ label, value, placeholder, setValue, multiline }) => {
 export default InputField;
 
 const styles = StyleSheet.create({
-  label: {
-    color: "#ccc",
-    fontSize: 20,
-    fontWeight: "bold",
-    paddingTop: 20,
-  },
   input: {
     marginTop: 10,
-    paddingVertical: 10,
+    paddingVertical: 14,
     paddingHorizontal: 10,
     fontSize: 18,
-    borderRadius: 10,
-    backgroundColor: "#333333",
+    borderBottomWidth: 1,
+    borderBottomColor: "#808080",
     color: "#fff",
   },
   multiline: {
@@ -55,8 +48,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     fontSize: 18,
     color: "#fff",
-    borderRadius: 10,
-    backgroundColor: "#333333",
-    height: 100,
+    borderBottomWidth: 1,
+    borderBottomColor: "#808080",
+    height: 50,
   },
 });

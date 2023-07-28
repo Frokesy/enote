@@ -4,9 +4,6 @@ import {
   View,
   TouchableWithoutFeedback,
   Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  Text,
 } from "react-native";
 import InputField from "./layout/InputField";
 import { DateTime } from "./DateTimePicker";
@@ -61,12 +58,6 @@ const AddTaskField = ({ newTask, setOpenModal }) => {
         <View style={styles.innerContainer}>
           <DateTime getSchedule={getSchedule} />
         </View>
-        {/* <InputField
-          label="Category"
-          value={task.category}
-          setValue={(text) => setTask({ ...task, category: text })}
-          placeholder="e.g Must do"
-        /> */}
       </View>
     </TouchableWithoutFeedback>
   );

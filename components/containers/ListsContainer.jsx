@@ -9,6 +9,7 @@ import {
   FlatList,
 } from "react-native";
 
+import { ListItem } from "@rneui/base";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Octicons } from "@expo/vector-icons";
 import TaskContext from "../../context/TaskContext";
@@ -57,58 +58,39 @@ const ListsContainer = () => {
     );
   };
   return (
-    <View style={styles.container}>
-      <Pressable onPress={toggleAccordion}>
-        <View style={styles.headerContainer}>
-          <TouchableOpacity onPress={toggleAccordion}>
-            <Text style={styles.headerText}>My Lists</Text>
-          </TouchableOpacity>
-          <View style={styles.iconsContainer}>
-            <Octicons name="plus" size={26} color="#fff" />
-            <TouchableOpacity onPress={toggleAccordion}>
-              {expanded ? (
-                <MaterialIcons
-                  name="keyboard-arrow-down"
-                  size={30}
-                  color="#fff"
-                />
-              ) : (
-                <MaterialIcons
-                  name="keyboard-arrow-right"
-                  size={30}
-                  color="#fff"
-                />
-              )}
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Pressable>
-      <Animated.View style={{ height: contentHeight, overflow: "hidden" }}>
+    <>
+      <ListItem.Accordion
+        content={
+          <ListItem.Content>
+            <ListItem.Title style={styles.headerText}>My Lists</ListItem.Title>
+          </ListItem.Content>
+        }
+        isExpanded={expanded}
+        onPress={() => {
+          setExpanded(!expanded);
+        }}
+        containerStyle={styles.headerContainer}
+        icon={<Octicons name="chevron-down" size={24} color="white" />}
+      >
         <View style={styles.listContainer}>
           <FlatList
             data={lists}
             renderItem={renderList}
             keyExtractor={(item) => item.id.toString()}
-            alwaysBounceVertical={false}
           />
         </View>
-      </Animated.View>
-    </View>
+      </ListItem.Accordion>
+    </>
   );
 };
 
 export default ListsContainer;
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 60,
-    position: "relative",
-  },
   headerContainer: {
     paddingHorizontal: 10,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    marginTop: 40,
+    backgroundColor: "transparent",
   },
   iconsContainer: {
     flexDirection: "row",
@@ -129,11 +111,12 @@ const styles = StyleSheet.create({
     color: "#ccc",
   },
   listContainer: {
-    marginTop: 20,
+    marginTop: 10,
     backgroundColor: "#404040",
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 2,
     borderRadius: 10,
+    height: 300,
   },
   listInnerContainer: {
     flexDirection: "row",

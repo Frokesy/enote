@@ -20,6 +20,26 @@ export const TaskContextProvider = ({ children }) => {
       title: "My List",
       theme: "green"
     },
+    {
+      id: 4,
+      title: "My List",
+      theme: "blue"
+    },
+    {
+      id: 5,
+      title: "My List",
+      theme: "blue"
+    },
+    {
+      id: 6,
+      title: "My List",
+      theme: "blue"
+    },
+    {
+      id: 7,
+      title: "My List",
+      theme: "blue"
+    },
   ]);
 
   const contextValue = {
